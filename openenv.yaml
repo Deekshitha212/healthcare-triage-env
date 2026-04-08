@@ -1,0 +1,43 @@
+name: healthcare-triage-env
+
+description: |
+  An AI environment that simulates healthcare triage decision-making.
+  The agent must decide whether a patient needs home care, doctor visit, or emergency care.
+
+version: "1.0"
+
+author: Deekshitha Thammi
+
+actions:
+  type: string
+  choices:
+    - home_care
+    - visit_doctor
+    - emergency
+
+observations:
+  type: object
+  properties:
+    symptoms:
+      type: array
+      items:
+        type: string
+    severity:
+      type: string
+    age:
+      type: integer
+    duration:
+      type: integer
+
+reward:
+  description: |
+    +1.0 for correct decision
+    +0.5 for partially correct (doctor)
+    -0.5 for incorrect decision
+    -1.0 for missing emergency case
+
+tasks:
+  - easy
+  - medium
+  - hard
+  
