@@ -2,7 +2,7 @@ from typing import Dict
 import random
 
 class HealthEnv:
-    def _init_(self):
+    def __init__(self):   # FIXED
         self.current_case = None
 
     def reset(self) -> Dict:
@@ -16,8 +16,6 @@ class HealthEnv:
 
     def step(self, action: str):
         done = True
-        reward = 0
-
         correct_action = self.get_correct_action()
 
         if action == correct_action:
