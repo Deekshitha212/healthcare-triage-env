@@ -1,14 +1,14 @@
 from env import HealthEnv
 
-def run():
+def main():
     env = HealthEnv()
 
     print("[START] task=healthcare_triage", flush=True)
 
     state = env.reset()
-    print(f"[STEP] step=1 state={state}", flush=True)
 
-    # simple logic (same as baseline)
+    step = 1
+
     if state["severity"] == "high":
         action = "emergency"
     elif state["severity"] == "medium":
@@ -16,12 +16,13 @@ def run():
     else:
         action = "rest"
 
-    _, reward, done, info = env.step(action)
+    next_state, reward, done, info = env.step(action)
 
-    print(f"[STEP] step=1 action={action} reward={reward}", flush=True)
+    # ✅ ONLY THIS STEP PRINT
+    print(f"[STEP] step={step} reward={reward}", flush=True)
 
-    print(f"[END] task=healthcare_triage score={reward} steps=1", flush=True)
+    print(f"[END] task=healthcare_triage score={reward} steps={step}", flush=True)
 
 
 if __name__ == "__main__":
-    run()
+    main()
