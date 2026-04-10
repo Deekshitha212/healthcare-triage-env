@@ -1,16 +1,22 @@
 import os
+from openai import OpenAI
 from env import HealthEnv
 
-API_BASE_URL = os.getenv("API_BASE_URL", "")
-MODEL_NAME = os.getenv("MODEL_NAME", "")
+API_BASE_URL = os.getenv("API_BASE_URL", "https://api.openai.com/v1")
+MODEL_NAME = os.getenv("MODEL_NAME", "gpt-3.5-turbo")
 HF_TOKEN = os.getenv("HF_TOKEN", "")
 LOCAL_IMAGE_NAME = os.getenv("LOCAL_IMAGE_NAME", "")
+
+client = OpenAI(
+    base_url=API_BASE_URL,
+    api_key=HF_TOKEN
+)
 
 
 def main():
     env = HealthEnv()
 
-    print("[START] task=healthcare_triage", flush=True)
+    print("[START]", flush=True)
 
     state = env.reset()
     step = 1
