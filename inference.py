@@ -1,19 +1,11 @@
-import os
 from env import HealthEnv
-
-API_BASE_URL = os.getenv("API_BASE_URL", "")
-MODEL_NAME = os.getenv("MODEL_NAME", "")
-HF_TOKEN = os.getenv("HF_TOKEN", "")
-LOCAL_IMAGE_NAME = os.getenv("LOCAL_IMAGE_NAME", "")
-
 
 def main():
     env = HealthEnv()
 
-    print("[START] task=healthcare_triage", flush=True)
+    print("[START]", flush=True)
 
     state = env.reset()
-    step = 1
 
     symptoms = state.get("symptoms", [])
     severity = state.get("severity", "low")
@@ -25,10 +17,10 @@ def main():
     else:
         action = "home_care"
 
-    next_state, reward, done, info = env.step(action)
+    _, reward, _, _ = env.step(action)
 
-    print(f"[STEP] step={step} action={action} reward={reward}", flush=True)
-    print(f"[END] task=healthcare_triage score={reward} steps={step}", flush=True)
+    print(f"[STEP] step=1 action={action} reward={reward}", flush=True)
+    print(f"[END] task=healthcare_triage score={reward} steps=1", flush=True)
 
 
 if __name__ == "__main__":
