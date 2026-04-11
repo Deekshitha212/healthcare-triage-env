@@ -3,7 +3,7 @@ from env import HealthEnv
 def main():
     env = HealthEnv()
 
-    print("[START] task=healthcare_triage", flush=True)
+    print("[START]", flush=True)
 
     state = env.reset()
 
@@ -21,7 +21,6 @@ def main():
 
     print(f"[STEP] step=1 action={action} reward={reward}", flush=True)
     print(f"[END] task=healthcare_triage score={reward} steps=1", flush=True)
-
 
 if __name__ == "__main__":
     main()
