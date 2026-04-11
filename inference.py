@@ -3,7 +3,7 @@ from env import HealthEnv
 def main():
     env = HealthEnv()
 
-    print("[START]", flush=True)
+    print("[START] task=healthcare_triage", flush=True)
 
     state = env.reset()
 
